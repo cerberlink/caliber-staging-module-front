@@ -7,6 +7,11 @@ body{
     background: rgb(219, 226, 226);
     
 }
+
+ul {
+  list-style: none;
+}
+
 .row{
     background: white;
     border-radius: 30px;
@@ -64,7 +69,6 @@ body{
     width: 80%;
     text-align: center;
     padding: 50px;
-    overflow: auto;
 }
 
 .left::after,
@@ -99,6 +103,7 @@ body{
 
 #selectSwot{
     padding:10px;
+    align-self: center;
 }
 
 #homeLink{
@@ -136,19 +141,78 @@ section {
 }
 
 .toggle-btn {
-    padding: 10px 20px;
+    padding: 5px 15px;
     background-color: #f26926;
     color: white;
     border: none;
-    border-radius: 10px;
     transition: 0.4s ease-in-out;
     margin-bottom: 10px;
     margin-top: 10px;
+
+    box-shadow: 0 1px 3px black;
+}
+
+.circle-btn {
+    position: absolute;
+    bottom: 0px;
+    right: 20px;
+    border-radius: 50%;
 }
 
 .toggle-btn:hover {
     background-color: #b6b1a8;
-    text-decoration: underline;
+    
+}
+/* Cards diplay for 4 blocks */
+
+
+.card{
+    height: 250px;
+    text-align: center;
+    /* overflow-y: auto; */
+    position: relative;
+    margin: 10px;
+}
+.card-title{
+    background-color: transparent;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+.card-body{
+    position: relative;
+    overflow-y: auto;
+}
+
+.card::-webkit-scrollbar {
+    width: .5em;
+}
+
+.card::-webkit-scrollbar-track{
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.card::-webkit-scrollbar-thumb {
+    background-color: #b8b3aa;
+    /* outline: 1px solid slategrey; */
+    border-radius: 10px;
+}
+
+#swot-table{
+    margin: auto;
+    position: relative;
+}
+
+#swot-table td {
+    width: 340px;
 }
 
 
+.update {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    /*optional*/
+    font-family: arial, sans-serif;
+    /*input has OS specific font-family*/
+    color: #069;
+    cursor: pointer;
+}

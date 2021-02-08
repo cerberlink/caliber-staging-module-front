@@ -1,6 +1,8 @@
 import { SwotComponent } from './components/swot/swot.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+// import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
@@ -18,6 +20,8 @@ import { ViewSwotComponent } from './components/view-swot/view-swot.component';
 import { AddItemComponent } from './components/add-item/add-item.component';
 import { CorsInterceptor } from './services/interceptor/cors.interceptor';
 import { UpdateAssociateComponent } from './components/update-associate/update-associate.component';
+import { UpdateSwotComponent } from './components/update-swot/update-swot.component';
+import { ToastMessageComponent } from './components/toast-message/toast-message.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +35,8 @@ import { UpdateAssociateComponent } from './components/update-associate/update-a
     UpdateItemComponent,
     AddItemComponent,
     UpdateAssociateComponent,
+    UpdateSwotComponent,
+    ToastMessageComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,12 +44,17 @@ import { UpdateAssociateComponent } from './components/update-associate/update-a
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    BrowserAnimationsModule,
+    // ToastrModule.forRoot()
   ],
-  providers: [ {
-    provide: HTTP_INTERCEPTORS, useClass: CorsInterceptor, multi: true 
-  }
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CorsInterceptor,
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

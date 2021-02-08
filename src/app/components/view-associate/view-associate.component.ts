@@ -42,8 +42,6 @@ export class ViewAssociateComponent implements OnInit {
     this.counter = 0;
   }
 
-  
-
   public toggleAssociateView() {
 
     const button = document.getElementById('associate-btn');
@@ -70,7 +68,6 @@ export class ViewAssociateComponent implements OnInit {
 
   open() {
     const modalRef = this.modalService.open(SwotComponent);
-    modalRef.componentInstance.name = 'CreateSwot';
     console.log(this.activeId);
     modalRef.componentInstance.passedId = this.activeId;
   }

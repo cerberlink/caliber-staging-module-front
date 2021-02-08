@@ -41,7 +41,7 @@ describe('UpdateItemComponent', () => {
     
   });
 
-  xit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
