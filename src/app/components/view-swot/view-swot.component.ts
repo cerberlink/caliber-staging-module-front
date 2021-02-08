@@ -1,3 +1,5 @@
+import { AssociateService } from './../../services/associate/associate.service';
+import { UpdateAssociateComponent } from './../update-associate/update-associate.component';
 import { UpdateItemComponent } from './../update-item/update-item.component';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { SwotItem } from './../../models/swot-model/swot-item';
@@ -9,6 +11,7 @@ import { AddItemComponent } from '../add-item/add-item.component';
 import { UpdateSwotComponent } from '../update-swot/update-swot.component';
 import { NgForm } from '@angular/forms';
 import { ResourceLoader } from '@angular/compiler';
+import { Associate } from 'src/app/models/associate-model/associate.model';
 
 @Component({
   selector: 'app-view-swot',
@@ -32,14 +35,12 @@ export class ViewSwotComponent implements OnInit {
     private modalService: NgbModal,
     private route: ActivatedRoute) {
 
-        
   }
 
 
   ngOnInit(): void {
     this.activeSwotIndex = 0;
     this.pullSwotData();
-    
   }
 
   // Opens Update as a modal page.
@@ -49,12 +50,10 @@ export class ViewSwotComponent implements OnInit {
     modalRef.componentInstance.name = 'UpdateSwot';
     modalRef.componentInstance.passedSwotItem = swotItem;
     modalRef.componentInstance.deleteEmitter.subscribe(this.delete.bind(this));
-    
   }
 
   delete(swotItemId: number) {
     console.log("Deleting from view-Swot, ID: " + swotItemId);
-    
     this.swotService.deleteItem(swotItemId)
       .subscribe((data: any) => {
         console.log(data);
@@ -67,6 +66,7 @@ export class ViewSwotComponent implements OnInit {
   pullSwotData() {
     const associateId = +this.route.snapshot.paramMap.get('associateId')!.valueOf();
     console.log(associateId)
+    localStorage.setItem('Array', JSON.stringify(this.ngOnInit))
     this.swotService.getSwotByAssociatedId(associateId)
 
       .subscribe((data: any) => {
@@ -181,6 +181,14 @@ export class ViewSwotComponent implements OnInit {
   changeDescription(){
     const modalRef = this.modalService.open(UpdateSwotComponent);
     modalRef.componentInstance.parentSwot = this.currentSwotAnalysis;
+  }
+
+  // this display updates the 4 cards to reflect the information from the swot selected
+  updateCards() {
+    const associateId = +this.route.snapshot.paramMap.get('associateId')!.valueOf();
+    const modalRef = this.swotService.getSwotByAssociatedId(associateId);
+      //this.pullSwotData;
+    console.log("already saved the information from 4 cards")
   }
 
 }
