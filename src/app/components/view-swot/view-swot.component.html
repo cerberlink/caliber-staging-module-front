@@ -34,12 +34,13 @@
 
 <section class="Form my-4 mx-5 right row align-items-center justify-content-center">
     <div class="container">
-      <!-- TODO Here it needs to improve the upadate-->
-        <select id="selectSwot" [(ngModel)]="currentSwotAnalysis">
+      <!-- TODO Here it needs to improve the update-->
+        <select id="selectSwot" (onChange) = "currentSwotAnalysis" [(ngModel)]="currentSwotAnalysis">
             <option *ngFor="let swotAnalysis of swotAnalyses;" [ngValue]="swotAnalysis">
                 {{swotAnalysis.description}} ({{swotAnalysis.createdOn | date:'short':'EST'}})
             </option>
         </select>
+        <button class="btn toggle-btn" (click)="pullSwotData()">Saved the 4 cards</button>
 <br>
         <button class="btn toggle-btn" (click)="changeDescription()">Change SWOT Description</button>
 

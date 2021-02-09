@@ -65,8 +65,8 @@ export class ViewSwotComponent implements OnInit {
 
   pullSwotData() {
     const associateId = +this.route.snapshot.paramMap.get('associateId')!.valueOf();
-    console.log(associateId)
-    localStorage.setItem('Array', JSON.stringify(this.ngOnInit))
+    console.log(associateId);
+    console.log(this.SavedCards);
     this.swotService.getSwotByAssociatedId(associateId)
 
       .subscribe((data: any) => {
@@ -184,11 +184,14 @@ export class ViewSwotComponent implements OnInit {
   }
 
   // this display updates the 4 cards to reflect the information from the swot selected
-  updateCards() {
-    const associateId = +this.route.snapshot.paramMap.get('associateId')!.valueOf();
-    const modalRef = this.swotService.getSwotByAssociatedId(associateId);
-      //this.pullSwotData;
-    console.log("already saved the information from 4 cards")
+  // once clicked the dropdown, it should be saved info after refreshing
+  SavedCards() {
+    const modal = this.pullSwotData();
+    localStorage.setItem('Array', JSON.stringify(modal));
+    console.log( modal +' button clicked to be saved!')
+    const modalRef1 = this.modalService.open(this.pullSwotData())
+    console.log(modalRef1 + " already saved the information from 4 cards!")
+    const modalRef = this.swotService.getItem;//this.modalService.open(this.swotAnalyses)
+    console.log(modalRef + " finally show the dropdown!");
   }
-
 }
